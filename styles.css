@@ -73,6 +73,7 @@ input:focus, textarea:focus {
     color: #4563e4;
 }
 .click {
+    cursor: pointer;
     transition: all 300ms ease;
 }
 .click:hover {
@@ -104,6 +105,16 @@ input:focus, textarea:focus {
 }
 .link__hover-effect--black::after {
     background-color: #242424;
+}
+nav, .scroll, .header {
+    opacity: 1;
+    visibility: visible;
+    transition: all 600ms 800ms;
+}
+.model--open nav,.model--open .scroll,.model--open .header {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 400ms ease;
 }
 /* 
 
@@ -238,10 +249,17 @@ nav {
     width: 90%;
     max-width: 1100px;
     height: 700px;
-    box-shadow: 0 20px 80px 0 rgb(0, 0, 0, 0.55);
     border-radius: 20px;
     overflow: hidden;
     display: flex;
+    visibility: hidden;
+    z-index: -1;
+    transition: visibility 1s, z-index 1s, box-shadow 0.5s ease;
+}
+.model--open .model{
+    z-index: 60;
+    box-shadow: 0 20px 80px 0 rgb(0, 0, 0, 0.55);
+    visibility: visible;
 }
 .model__half {
     width: 50%;
@@ -250,9 +268,15 @@ nav {
     flex-direction: column;
     justify-content: center;
     position: relative;
+    transition: 300ms ease-in;
+}
+.model--open .model__about, 
+.model--open .model__contact{
+    transform: translateX(0%);
 }
 .model__about {
     background-color: rgb(245, 245, 245);
+    transform: translateX(-110%);
 } 
 .model__languages {
     display: flex;
@@ -297,6 +321,7 @@ nav {
 .model__contact {
     background-color: #242424;
     color: white;
+    transform: translateX(110%);
 }
 .form__item {
     margin-bottom: 20px;
@@ -327,14 +352,14 @@ nav {
     left: 0;
     width: 100%;
     height: 100%;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
+    z-index: -1;
 }
 .model__overlay--loading {
     background-color: #242424;
     font-size: 80px;
-    z-index: -1;
 }
 .model__overlay--sucess {
     background-color: #4bb543;
@@ -342,6 +367,10 @@ nav {
     font-weight: 700;
     text-align: center;
     padding: 28px;
+}
+.model__overlay--visible {
+    z-index: 1;
+    display: flex;
 }
 .fa-spinner {
     animation: spinner 750ms infinite linear;
@@ -354,6 +383,15 @@ nav {
     100% {
         transform: rotate(360deg);
     }
+}
+
+.model__exit {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: #fff;
+    font-size: 36px;
+    z-index: 100;
 }
 /* 
 

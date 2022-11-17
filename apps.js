@@ -2,6 +2,18 @@
 // service_b939bzk
 // zwmj78c78DIVSZt8W
 
+let contrastToggle = false
+function toggleContrast() {
+    contrastToggle = !contrastToggle
+    if(contrastToggle) {
+        document.body.classList += " dark--theme"
+    }
+    else {
+        document.body.classList.remove('dark--theme')
+    }
+}
+ 
+
 function contact(event) {
     const loading = document.querySelector('.model__overlay--loading')
     const success = document.querySelector('.model__overlay--sucess')
